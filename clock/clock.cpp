@@ -1,7 +1,7 @@
 /*******************************************************************************
 ** @file:     clock.cpp
 ** @class:    Clock
-** @brief:    //Short description
+** @brief:     ±÷”
 ** Detailed description
 **
 ** @author:   lzj
