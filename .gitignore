@@ -1,0 +1,6 @@
+#clock
+clock.pro.user
+Debug/
+Release/
+.qmake.stash
+Makefile*
