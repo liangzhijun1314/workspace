@@ -4,3 +4,8 @@ Debug/
 Release/
 .qmake.stash
 Makefile*
+
+
+#ProjectChooser
+ProjectChooser.pro.user
+ui_projectdialog.h
