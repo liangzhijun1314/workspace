@@ -7,3 +7,4 @@
 TEMPLATE = subdirs
 SUBDIRS += clock
 SUBDIRS	+= ProjectChooser
+SUBDIRS	+= eventDemo
