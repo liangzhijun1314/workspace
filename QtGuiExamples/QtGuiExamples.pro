@@ -12,6 +12,5 @@ SUBDIRS	+= NetworkDemo
 SUBDIRS	+= snake
 SUBDIRS	+= TreeView
 SUBDIRS	+= xmlDemos
-
-
+SUBDIRS	+= windows
 
