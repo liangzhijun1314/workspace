@@ -11,6 +11,7 @@ SUBDIRS	+= eventDemo
 SUBDIRS	+= NetworkDemo
 SUBDIRS	+= snake
 SUBDIRS	+= TreeView
+SUBDIRS	+= xmlDemos
 
 
 
