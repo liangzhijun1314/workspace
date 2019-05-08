@@ -1,4 +1,4 @@
-#include "downloadmanager.h"
+ï»¿#include "downloadmanager.h"
 #include <QFile>
 #include <QDebug>
 #include <QFileInfo>
@@ -28,35 +28,35 @@ DownLoadManager::~DownLoadManager()
 
 }
 
-// ÉèÖÃÊÇ·ñÖ§³Ö¶ÏµãĞø´«;
+// è®¾ç½®æ˜¯å¦æ”¯æŒæ–­ç‚¹ç»­ä¼ ;
 void DownLoadManager::setDownInto(bool isSupportBreakPoint)
 {
     m_isSupportBreakPoint = isSupportBreakPoint;
 }
 
-// »ñÈ¡µ±Ç°ÏÂÔØÁ´½Ó;
+// è·å–å½“å‰ä¸‹è½½é“¾æ¥;
 QString DownLoadManager::getDownloadUrl()
 {
     return m_url.toString();
 }
 
-// ¿ªÊ¼ÏÂÔØÎÄ¼ş£¬´«ÈëÏÂÔØÁ´½ÓºÍÎÄ¼şµÄÂ·¾¶;
+// å¼€å§‹ä¸‹è½½æ–‡ä»¶ï¼Œä¼ å…¥ä¸‹è½½é“¾æ¥å’Œæ–‡ä»¶çš„è·¯å¾„;
 void DownLoadManager::downloadFile(QString url, QString fileName)
 {
-    // ·ÀÖ¹¶à´Îµã»÷¿ªÊ¼ÏÂÔØ°´Å¥£¬½øĞĞ¶à´ÎÏÂÔØ£¬Ö»ÓĞÔÚÍ£Ö¹±êÖ¾±äÁ¿ÎªtrueÊ±²Å½øĞĞÏÂÔØ;
+    // é˜²æ­¢å¤šæ¬¡ç‚¹å‡»å¼€å§‹ä¸‹è½½æŒ‰é’®ï¼Œè¿›è¡Œå¤šæ¬¡ä¸‹è½½ï¼Œåªæœ‰åœ¨åœæ­¢æ ‡å¿—å˜é‡ä¸ºtrueæ—¶æ‰è¿›è¡Œä¸‹è½½;
     if (m_isStop)
     {
         m_isStop = false;
         m_url = QUrl(url);
 
-        // ÕâÀï¿ÉÓÃ´ÓurlÖĞ»ñÈ¡ÎÄ¼şÃû£¬µ«²»ÊÇ¶ÔËùÓĞµÄurl¶¼ÓĞĞ§;
+        // è¿™é‡Œå¯ç”¨ä»urlä¸­è·å–æ–‡ä»¶åï¼Œä½†ä¸æ˜¯å¯¹æ‰€æœ‰çš„urléƒ½æœ‰æ•ˆ;
         //      QString fileName = m_url.fileName();
 
-        // ½«µ±Ç°ÎÄ¼şÃûÉèÖÃÎªÁÙÊ±ÎÄ¼şÃû£¬ÏÂÔØÍê³ÉÊ±ĞŞ¸Ä»ØÀ´;
+        // å°†å½“å‰æ–‡ä»¶åè®¾ç½®ä¸ºä¸´æ—¶æ–‡ä»¶åï¼Œä¸‹è½½å®Œæˆæ—¶ä¿®æ”¹å›æ¥;
         m_fileName = fileName + DOWNLOAD_FILE_SUFFIX;
 
-        // Èç¹ûµ±Ç°ÏÂÔØµÄ×Ö½ÚÊıÎª0ÄÇÃ´ËµÃ÷Î´ÏÂÔØ¹ı»òÕßÖØĞÂÏÂÔØ
-        // ÔòĞèÒª¼ì²â±¾µØÊÇ·ñ´æÔÚÖ®Ç°ÏÂÔØµÄÁÙÊ±ÎÄ¼ş£¬Èç¹ûÓĞÔòÉ¾³ı
+        // å¦‚æœå½“å‰ä¸‹è½½çš„å­—èŠ‚æ•°ä¸º0é‚£ä¹ˆè¯´æ˜æœªä¸‹è½½è¿‡æˆ–è€…é‡æ–°ä¸‹è½½
+        // åˆ™éœ€è¦æ£€æµ‹æœ¬åœ°æ˜¯å¦å­˜åœ¨ä¹‹å‰ä¸‹è½½çš„ä¸´æ—¶æ–‡ä»¶ï¼Œå¦‚æœæœ‰åˆ™åˆ é™¤
         if (m_bytesCurrentReceived <= 0)
         {
             removeFile(m_fileName);
@@ -65,14 +65,14 @@ void DownLoadManager::downloadFile(QString url, QString fileName)
         QNetworkRequest request;
         request.setUrl(m_url);
 
-        // Èç¹ûÖ§³Ö¶ÏµãĞø´«£¬ÔòÉèÖÃÇëÇóÍ·ĞÅÏ¢
+        // å¦‚æœæ”¯æŒæ–­ç‚¹ç»­ä¼ ï¼Œåˆ™è®¾ç½®è¯·æ±‚å¤´ä¿¡æ¯
         if (m_isSupportBreakPoint)
         {
             QString strRange = QString("bytes=%1-").arg(m_bytesCurrentReceived);
             request.setRawHeader("Range", strRange.toLatin1());
         }
 
-        // ÇëÇóÏÂÔØ;
+        // è¯·æ±‚ä¸‹è½½;
         m_reply = m_networkManager->get(request);
 
         connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(onDownloadProgress(qint64, qint64)));
@@ -82,7 +82,7 @@ void DownLoadManager::downloadFile(QString url, QString fileName)
     }
 }
 
-// Í£Ö¹ÏÂÔØ¹¤×÷;
+// åœæ­¢ä¸‹è½½å·¥ä½œ;
 void DownLoadManager::stopWork()
 {
     m_isStop = true;
@@ -98,19 +98,19 @@ void DownLoadManager::stopWork()
     }
 }
 
-// ÔİÍ£ÏÂÔØ°´Å¥±»°´ÏÂ,ÔİÍ£µ±Ç°ÏÂÔØ;
+// æš‚åœä¸‹è½½æŒ‰é’®è¢«æŒ‰ä¸‹,æš‚åœå½“å‰ä¸‹è½½;
 void DownLoadManager::stopDownload()
 {
-    // ÕâÀïm_isStop±äÁ¿ÎªÁË±£»¤¶à´Îµã»÷ÔİÍ£ÏÂÔØ°´Å¥£¬µ¼ÖÂm_bytesCurrentReceived ±»²»Í£ÀÛ¼Ó;
+    // è¿™é‡Œm_isStopå˜é‡ä¸ºäº†ä¿æŠ¤å¤šæ¬¡ç‚¹å‡»æš‚åœä¸‹è½½æŒ‰é’®ï¼Œå¯¼è‡´m_bytesCurrentReceived è¢«ä¸åœç´¯åŠ ;
     if (!m_isStop)
     {
-        //¼ÇÂ¼µ±Ç°ÒÑ¾­ÏÂÔØ×Ö½ÚÊı
+        //è®°å½•å½“å‰å·²ç»ä¸‹è½½å­—èŠ‚æ•°
         m_bytesCurrentReceived += m_bytesReceived;
         stopWork();
     }
 }
 
-// ÖØÖÃ²ÎÊı;
+// é‡ç½®å‚æ•°;
 void DownLoadManager::reset()
 {
     m_bytesCurrentReceived = 0;
@@ -118,10 +118,10 @@ void DownLoadManager::reset()
     m_bytesTotal = 0;
 }
 
-// É¾³ıÎÄ¼ş;
+// åˆ é™¤æ–‡ä»¶;
 void DownLoadManager::removeFile(QString fileName)
 {
-    // É¾³ıÒÑÏÂÔØµÄÁÙÊ±ÎÄ¼ş;
+    // åˆ é™¤å·²ä¸‹è½½çš„ä¸´æ—¶æ–‡ä»¶;
     QFileInfo fileInfo(fileName);
     if (fileInfo.exists())
     {
@@ -129,7 +129,7 @@ void DownLoadManager::removeFile(QString fileName)
     }
 }
 
-// Í£Ö¹ÏÂÔØ°´Å¥±»°´ÏÂ£¬¹Ø±ÕÏÂÔØ£¬ÖØÖÃ²ÎÊı£¬²¢É¾³ıÏÂÔØµÄÁÙÊ±ÎÄ¼ş;
+// åœæ­¢ä¸‹è½½æŒ‰é’®è¢«æŒ‰ä¸‹ï¼Œå…³é—­ä¸‹è½½ï¼Œé‡ç½®å‚æ•°ï¼Œå¹¶åˆ é™¤ä¸‹è½½çš„ä¸´æ—¶æ–‡ä»¶;
 void DownLoadManager::closeDownload()
 {
     stopWork();
@@ -137,20 +137,20 @@ void DownLoadManager::closeDownload()
     removeFile(m_fileName);
 }
 
-// ÏÂÔØ½ø¶ÈĞÅÏ¢;
+// ä¸‹è½½è¿›åº¦ä¿¡æ¯;
 void DownLoadManager::onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     if (!m_isStop)
     {
         m_bytesReceived = bytesReceived;
         m_bytesTotal = bytesTotal;
-        // ¸üĞÂÏÂÔØ½ø¶È;(¼ÓÉÏ m_bytesCurrentReceived ÊÇÎªÁË¶ÏµãĞø´«Ê±Ö®Ç°ÏÂÔØµÄ×Ö½Ú)
+        // æ›´æ–°ä¸‹è½½è¿›åº¦;(åŠ ä¸Š m_bytesCurrentReceived æ˜¯ä¸ºäº†æ–­ç‚¹ç»­ä¼ æ—¶ä¹‹å‰ä¸‹è½½çš„å­—èŠ‚)
         emit signalDownloadProcess(m_bytesReceived + m_bytesCurrentReceived, m_bytesTotal + m_bytesCurrentReceived);
     }
 }
 
 
-// »ñÈ¡ÏÂÔØÄÚÈİ£¬±£´æµ½ÎÄ¼şÖĞ;
+// è·å–ä¸‹è½½å†…å®¹ï¼Œä¿å­˜åˆ°æ–‡ä»¶ä¸­;
 void DownLoadManager::onReadyRead()
 {
     if (!m_isStop)
@@ -164,16 +164,16 @@ void DownLoadManager::onReadyRead()
     }
 }
 
-// ÏÂÔØÍê³É;
+// ä¸‹è½½å®Œæˆ;
 void DownLoadManager::onFinished()
 {
     m_isStop = true;
-    // httpÇëÇó×´Ì¬Âë;
+    // httpè¯·æ±‚çŠ¶æ€ç ;
     QVariant statusCode = m_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
 
     if (m_reply->error() == QNetworkReply::NoError)
     {
-        // ÖØÃüÃûÁÙÊ±ÎÄ¼ş;
+        // é‡å‘½åä¸´æ—¶æ–‡ä»¶;
         QFileInfo fileInfo(m_fileName);
         if (fileInfo.exists())
         {
@@ -184,7 +184,7 @@ void DownLoadManager::onFinished()
     }
     else
     {
-        // ÓĞ´íÎóÊä³ö´íÎó;
+        // æœ‰é”™è¯¯è¾“å‡ºé”™è¯¯;
         QString strError = m_reply->errorString();
         qDebug() << "__________" + strError;
     }
@@ -192,7 +192,7 @@ void DownLoadManager::onFinished()
     emit signalReplyFinished(statusCode.toInt());
 }
 
-// ÏÂÔØ¹ı³ÌÖĞ³öÏÖ´íÎó£¬¹Ø±ÕÏÂÔØ£¬²¢ÉÏ±¨´íÎó£¬ÕâÀïÎ´ÉÏ±¨´íÎóÀàĞÍ£¬¿É×Ô¼º¶¨Òå½øĞĞÉÏ±¨;
+// ä¸‹è½½è¿‡ç¨‹ä¸­å‡ºç°é”™è¯¯ï¼Œå…³é—­ä¸‹è½½ï¼Œå¹¶ä¸ŠæŠ¥é”™è¯¯ï¼Œè¿™é‡Œæœªä¸ŠæŠ¥é”™è¯¯ç±»å‹ï¼Œå¯è‡ªå·±å®šä¹‰è¿›è¡Œä¸ŠæŠ¥;
 void DownLoadManager::onError(QNetworkReply::NetworkError code)
 {
     QString strError = m_reply->errorString();
