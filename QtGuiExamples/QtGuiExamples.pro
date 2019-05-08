@@ -8,3 +8,5 @@ TEMPLATE = subdirs
 SUBDIRS += clock
 SUBDIRS	+= ProjectChooser
 SUBDIRS	+= eventDemo
+SUBDIRS	+= NetworkDemo
+SUBDIRS	+= snake
