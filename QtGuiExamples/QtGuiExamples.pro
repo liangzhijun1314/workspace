@@ -15,4 +15,5 @@ SUBDIRS	+= xmlDemos
 SUBDIRS	+= windows
 SUBDIRS	+= Utf8ToGbk
 SUBDIRS	+= ImageViewer
+SUBDIRS	+= Keyboard
 
