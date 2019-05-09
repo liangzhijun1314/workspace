@@ -10,4 +10,5 @@ SUBDIRS += \
     UDP_Server \
     UDP_Client \
     Multicast_UDP_Server \
-    Multicast_UDP_Client
+    Multicast_UDP_Client \
+    IPTool
