@@ -1,5 +1,5 @@
 ﻿#pragma execution_character_set("utf-8")
-#include "imageviewer.h"
+#include "imageview.h"
 #include <QApplication>
 #include <QStyle>
 #include <QPainter>

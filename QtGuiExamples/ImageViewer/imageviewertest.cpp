@@ -1,6 +1,6 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "imageviewertest.h"
-#include "imageviewer.h"
+#include "imageview.h"
 #include "ui_imageviewertest.h"
 #include <QFileDialog>
 

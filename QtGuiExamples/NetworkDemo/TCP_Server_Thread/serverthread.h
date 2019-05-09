@@ -1,4 +1,4 @@
-#ifndef SERVERTHREAD_H
+﻿#ifndef SERVERTHREAD_H
 #define SERVERTHREAD_H
 #include <QThread>
 #include <QTcpSocket>

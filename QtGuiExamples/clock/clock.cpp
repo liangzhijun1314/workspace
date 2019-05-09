@@ -1,7 +1,7 @@
-/*******************************************************************************
+ï»¿/*******************************************************************************
 ** @file:     clock.cpp
 ** @class:    Clock
-** @brief:    Ê±ÖÓ
+** @brief:    æ—¶é’Ÿ
 ** Detailed description
 **
 ** @author:   lzj
@@ -26,37 +26,37 @@ const QPoint Clock::hourHand[4] = {
     QPoint(0, 13),
     QPoint(-3, 5),
     QPoint(0, -40)
-}; // Ê±Õë»æÍ¼ÇøÓò
+}; // æ—¶é’ˆç»˜å›¾åŒºåŸŸ
 const QPoint Clock::minuteHand[4] = {
     QPoint(3, 5),
     QPoint(0, 16),
     QPoint(-3, 5),
     QPoint(0, -68)
-}; // ·ÖÕë»æÍ¼ÇøÓò
+}; // åˆ†é’ˆç»˜å›¾åŒºåŸŸ
 const QPoint Clock::secondHand[4] = {
     QPoint(3, 5),
     QPoint(0, 18),
     QPoint(-3, 5),
     QPoint(0, -85)
-}; // ÃëÕë»æÍ¼ÇøÓò
+}; // ç§’é’ˆç»˜å›¾åŒºåŸŸ
 
 Clock::Clock(QWidget *parent)
     : QWidget(parent)
 {
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);// È¥µô±êÌâÀ¸,È¥µôÈÎÎñÀ¸ÏÔÊ¾£¬´°¿ÚÖÃ¶¥
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);// å»æ‰æ ‡é¢˜æ ,å»æ‰ä»»åŠ¡æ æ˜¾ç¤ºï¼Œçª—å£ç½®é¡¶
     this->setWindowIcon(QIcon(":/clock.ico"));
-    this->setWindowTitle( QString::fromLocal8Bit("×ÀÃæÊ±ÖÓ") );
+    this->setWindowTitle( QString::fromLocal8Bit("æ¡Œé¢æ—¶é’Ÿ") );
     this->resize(200, 200);
-    this->setAttribute(Qt::WA_TranslucentBackground, true);// ´°¿ÚÍ¸Ã÷£¬È¥µô±êÌâÀ¸ºó·½ÉúĞ§
-    /* ¼ÓÔØÍâ²¿×ÖÌåÎÄ¼ş */
+    this->setAttribute(Qt::WA_TranslucentBackground, true);// çª—å£é€æ˜ï¼Œå»æ‰æ ‡é¢˜æ åæ–¹ç”Ÿæ•ˆ
+    /* åŠ è½½å¤–éƒ¨å­—ä½“æ–‡ä»¶ */
     m_fontList.clear();
-    int lcdFontId = QFontDatabase::addApplicationFont(":/lcd/DS-DIGI.ttf"); // ´Ósource×ÊÔ´ÎÄ¼ş
+    int lcdFontId = QFontDatabase::addApplicationFont(":/lcd/DS-DIGI.ttf"); // ä»sourceèµ„æºæ–‡ä»¶
     if (lcdFontId != -1)
     {
         m_fontList << QFontDatabase::applicationFontFamilies(lcdFontId);
     }
 
-    /* »­±ÊÉèÖÃ */
+    /* ç”»ç¬”è®¾ç½® */
     mHourHandPen = QPen(palette().foreground(), 2.0);
     mMinuteHandPen = QPen(palette().foreground(), 1.0);
 
@@ -64,21 +64,21 @@ Clock::Clock(QWidget *parent)
     pTimer->start(1000);
     connect( pTimer, SIGNAL(timeout()), this, SLOT(update()) );
 
-    /* ÒôĞ§¿ØÖÆ */
+    /* éŸ³æ•ˆæ§åˆ¶ */
     //    QString dir = QCoreApplication::applicationDirPath();
     //    QString filename(dir + "/sounds/clockMoveSound.wav");
     m_pEffect = new QSoundEffect(this);
-    m_pEffect->setLoopCount(QSoundEffect::Infinite); // Ñ­»·²¥·Å
+    m_pEffect->setLoopCount(QSoundEffect::Infinite); // å¾ªç¯æ’­æ”¾
     //    m_pEffect->setSource( QUrl::fromLocalFile(filename) );
     m_pEffect->setSource( QUrl::fromLocalFile(":/sound/clockMoveSound.wav") );
-    m_pEffect->setVolume(1.0); // ÒôÁ¿¿ØÖÆ£º0.0-1.0
-    //    m_pEffect->play(); // ²¥·Å
-    //    m_pEffect->stop(); // Í£Ö¹
+    m_pEffect->setVolume(1.0); // éŸ³é‡æ§åˆ¶ï¼š0.0-1.0
+    //    m_pEffect->play(); // æ’­æ”¾
+    //    m_pEffect->stop(); // åœæ­¢
 
-    /* ´´½¨ÓÒ¼ü²Ëµ¥ */
+    /* åˆ›å»ºå³é”®èœå• */
     createMenu();
 
-    /* ´´½¨ÏµÍ³ÍĞÅÌÏî */
+    /* åˆ›å»ºç³»ç»Ÿæ‰˜ç›˜é¡¹ */
     createTray();
 }
 
@@ -91,25 +91,25 @@ Clock::~Clock()
     delete m_pSoundOffAct;
     delete m_pEffect;
 }
-/* ÓÒ¼ü²Ëµ¥²Ûº¯Êı */
+/* å³é”®èœå•æ§½å‡½æ•° */
 void Clock::slot_showMaxiNormal()
 {
     if (this->isFullScreen())
     {
         this->showNormal();
-        m_pMaxiMinimizeAct->setText( QString::fromLocal8Bit("È«ÆÁ") );
+        m_pMaxiMinimizeAct->setText( QString::fromLocal8Bit("å…¨å±") );
         m_pMaxiMinimizeAct->setIcon( QIcon(":/ico/fullscreen.ico") );
         return;
     }
     else
     {
         this->showFullScreen();
-        m_pMaxiMinimizeAct->setText( QString::fromLocal8Bit("»¹Ô­") );
+        m_pMaxiMinimizeAct->setText( QString::fromLocal8Bit("è¿˜åŸ") );
         m_pMaxiMinimizeAct->setIcon( QIcon(":/ico/exitfullscreen.ico") );
         return;
     }
 }
-/* ÒôĞ§¿ØÖÆ²Ûº¯Êı */
+/* éŸ³æ•ˆæ§åˆ¶æ§½å‡½æ•° */
 void Clock::slot_EffectControl()
 {
     if ( m_pEffect->isPlaying() )
@@ -127,42 +127,42 @@ void Clock::slot_EffectControl()
         QTime now;
         do{
             now = QTime::currentTime();
-        }while(now.msec() >= 50 && now.msec() <= 950); // ÒôĞ§¶ÔÊ±
+        }while(now.msec() >= 50 && now.msec() <= 950); // éŸ³æ•ˆå¯¹æ—¶
 
         m_pEffect->play();
         return;
     }
 }
-/* ÖØĞ´»æÍ¼ÊÂ¼ş */
+/* é‡å†™ç»˜å›¾äº‹ä»¶ */
 void Clock::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
-    QFont font("Microsoft Yahei", 10, 75); // ×ÖÌå£¬´óĞ¡£¬¼Ó´ÖµÈÍ¬ÓÚQFont::Bold
+    QFont font("Microsoft Yahei", 10, 75); // å­—ä½“ï¼Œå¤§å°ï¼ŒåŠ ç²—ç­‰åŒäºQFont::Bold
     painter.setFont(font);
-    painter.setRenderHint(QPainter::Antialiasing, true); //·´¾â³İ
+    painter.setRenderHint(QPainter::Antialiasing, true); //åé”¯é½¿
     //    painter.setWindow(0, 0, 200, 200);
 
     int side = qMin(this->width(), this->height());
 
-    /* Ô²ĞÎ±³¾°µÄ»æÖÆ */
-    painter.setPen(Qt::NoPen); // È¥µôÍâÈ¦Ïß
-    painter.setBrush(QColor(255, 255, 255, 125));              // ±³¾°ÑÕÉ«ÒÔ¼°Í¸Ã÷¶È
-    painter.drawEllipse( QPoint(width()/2, height()/2), side/2, side/2 ); // »æÖÆ±³¾°
+    /* åœ†å½¢èƒŒæ™¯çš„ç»˜åˆ¶ */
+    painter.setPen(Qt::NoPen); // å»æ‰å¤–åœˆçº¿
+    painter.setBrush(QColor(255, 255, 255, 125));              // èƒŒæ™¯é¢œè‰²ä»¥åŠé€æ˜åº¦
+    painter.drawEllipse( QPoint(width()/2, height()/2), side/2, side/2 ); // ç»˜åˆ¶èƒŒæ™¯
 
-    painter.setPen(QPen( QColor(233, 233, 216 ), 4 )); // Íâ±ß¿òÑÕÉ«ÒÔ¼°´óĞ¡
-    painter.drawEllipse(QPoint(width()/2, height()/2), side/2 - 3, side/2 - 3); //Íâ±ß¿ò»æÖÆ
+    painter.setPen(QPen( QColor(233, 233, 216 ), 4 )); // å¤–è¾¹æ¡†é¢œè‰²ä»¥åŠå¤§å°
+    painter.drawEllipse(QPoint(width()/2, height()/2), side/2 - 3, side/2 - 3); //å¤–è¾¹æ¡†ç»˜åˆ¶
 
-    painter.translate(width() / 2, height() / 2); // ÉèÖÃ×ø±êÔ­µã
-    painter.scale(side / 200.0, side / 200.0); // Ëõ·Å±ÈÀı
+    painter.translate(width() / 2, height() / 2); // è®¾ç½®åæ ‡åŸç‚¹
+    painter.scale(side / 200.0, side / 200.0); // ç¼©æ”¾æ¯”ä¾‹
 
-    /* Ê±Õë¡¢·ÖÕë¡¢ÃëÕë¡¢±íÅÌ¡¢Lcd */
+    /* æ—¶é’ˆã€åˆ†é’ˆã€ç§’é’ˆã€è¡¨ç›˜ã€Lcd */
     drawHourHand(&painter);
     drawMinuteHand(&painter);
     drawSecondHand(&painter);
     drawClockDial(&painter);
     drawLcdNumber(&painter);
 
-    /* ÖĞĞÄµã */
+    /* ä¸­å¿ƒç‚¹ */
     painter.setBrush(Qt::black);
     painter.drawEllipse(QPoint(0, 0), 2, 2);
 }
@@ -173,9 +173,9 @@ void Clock::drawHourHand(QPainter *painter)
     painter->setBrush(Qt::black);
     painter->setPen(Qt::black);
     painter->save();
-    painter->rotate( 30.0 * (time.hour() + time.minute()/60.0) ); //×ø±êÖáĞı×ª
-    painter->drawConvexPolygon(hourHand, 4); // »æÖÆÍ¹¶à±ßĞÎ£¬ÓÉn¸öµã¿ØÖÆ£¬´Ë´¦ÓÉ4¸öµã¿ØÖÆ
-    painter->restore(); //¸´Î»×ø±ê
+    painter->rotate( 30.0 * (time.hour() + time.minute()/60.0) ); //åæ ‡è½´æ—‹è½¬
+    painter->drawConvexPolygon(hourHand, 4); // ç»˜åˆ¶å‡¸å¤šè¾¹å½¢ï¼Œç”±nä¸ªç‚¹æ§åˆ¶ï¼Œæ­¤å¤„ç”±4ä¸ªç‚¹æ§åˆ¶
+    painter->restore(); //å¤ä½åæ ‡
 }
 
 void Clock::drawMinuteHand(QPainter *painter)
@@ -186,7 +186,7 @@ void Clock::drawMinuteHand(QPainter *painter)
     painter->save();
     painter->rotate( 6.0 * (time.minute() + time.second()/60.0) );
     painter->drawConvexPolygon(minuteHand, 4);
-    painter->restore(); //¸´Î»×ø±ê
+    painter->restore(); //å¤ä½åæ ‡
 }
 
 void Clock::drawSecondHand(QPainter *painter)
@@ -215,29 +215,29 @@ void Clock::drawLcdNumber(QPainter *painter)
 
     //    painter->setBrush(Qt::NoBrush);
     //    painter->drawRect(-40, 34, 80, 22);
-    //     ×ø±êÏµÍ³£ºÏòÓÒÎªXÖáÕı·½Ïò£¬ÏòÏÂÎªYÖáÕı·½Ïò
+    //     åæ ‡ç³»ç»Ÿï¼šå‘å³ä¸ºXè½´æ­£æ–¹å‘ï¼Œå‘ä¸‹ä¸ºYè½´æ­£æ–¹å‘
 }
-// ±íÅÌºÍÊı×Ö
+// è¡¨ç›˜å’Œæ•°å­—
 void Clock::drawClockDial(QPainter *painter)
 {
     for (int i = 1; i <= 60; i++) {
         painter->save();
-        painter->rotate(6*i); // ×ø±êÖáĞı×ª6*i¶È
+        painter->rotate(6*i); // åæ ‡è½´æ—‹è½¬6*iåº¦
 
-        if ( (i % 5 == 0) && (i <= 15 || i >= 45) ) { // Ğ¡Ê±¿Ì¶ÈºÍÊı×Ö
+        if ( (i % 5 == 0) && (i <= 15 || i >= 45) ) { // å°æ—¶åˆ»åº¦å’Œæ•°å­—
             painter->setPen(mHourHandPen);
             painter->drawLine(0, -95, 0, -80);
             painter->drawText(-20, -82, 40, 40,
                               Qt::AlignHCenter | Qt::AlignTop,
                               QString::number(i/5) );
-            if (i < 15 || i > 45) { // ½â¾öÏÂ°ë²¿·ÖÊı×Öµ¹×ªÎÊÌâ
+            if (i < 15 || i > 45) { // è§£å†³ä¸‹åŠéƒ¨åˆ†æ•°å­—å€’è½¬é—®é¢˜
 
                 painter->drawLine(0, 80, 0, 95);
                 painter->drawText( -20, 41, 40, 40,
                                    Qt::AlignHCenter | Qt::AlignBottom,
                                    QString::number(i<15 ? i/5+6 : i/5-6) );
             }
-        } else { // ·ÖÖÓ¿Ì¶È
+        } else { // åˆ†é’Ÿåˆ»åº¦
             painter->setPen(mMinuteHandPen);
             painter->drawLine(0, 95, 0, 90);
         }
@@ -245,10 +245,10 @@ void Clock::drawClockDial(QPainter *painter)
         painter->restore();
     }//for
 }
-/* ÊµÏÖ´°¿ÚÍÏ¶¯ */
+/* å®ç°çª—å£æ‹–åŠ¨ */
 void Clock::mousePressEvent(QMouseEvent *event)
 {
-    mPos = (event->globalPos()) - (this->pos()); //°´ÏÂµã - Î´°´ÏÂÊ±µÄµã
+    mPos = (event->globalPos()) - (this->pos()); //æŒ‰ä¸‹ç‚¹ - æœªæŒ‰ä¸‹æ—¶çš„ç‚¹
 }
 
 void Clock::mouseMoveEvent(QMouseEvent *event)
@@ -257,31 +257,31 @@ void Clock::mouseMoveEvent(QMouseEvent *event)
         this->move(event->globalPos() - mPos );
     }
 }
-/* ÖØĞ´¹öÂÖÊÂ¼ş£¬ÊµÏÖ·Å´óËõĞ¡ */
+/* é‡å†™æ»šè½®äº‹ä»¶ï¼Œå®ç°æ”¾å¤§ç¼©å° */
 void Clock::wheelEvent(QWheelEvent *event)
 {
     QRect tmp = this->geometry();
-    QPoint centerPoint = tmp.center(); // ´¢´æÖĞĞÄµã×ø±ê
+    QPoint centerPoint = tmp.center(); // å‚¨å­˜ä¸­å¿ƒç‚¹åæ ‡
 
     static int adjustSize = 20;
 
-    if (event->delta() > 0) // ·Å´ó
+    if (event->delta() > 0) // æ”¾å¤§
     {
         tmp.setWidth(tmp.width() + adjustSize);
         tmp.setHeight(tmp.height() + adjustSize);
     }
-    else // ËõĞ¡
+    else // ç¼©å°
     {
         tmp.setWidth(tmp.width() - adjustSize);
         tmp.setHeight(tmp.height() - adjustSize);
     }
 
-    if (tmp.width() > 20) // ÏŞÖÆ×îĞ¡³ß´ç
+    if (tmp.width() > 20) // é™åˆ¶æœ€å°å°ºå¯¸
     {
-        tmp.moveCenter(centerPoint); // ´ÓÖĞĞÄËõ·Å¶ø·Ç×óÉÏ½Ç´¦
+        tmp.moveCenter(centerPoint); // ä»ä¸­å¿ƒç¼©æ”¾è€Œéå·¦ä¸Šè§’å¤„
         this->setGeometry(tmp);
 
-        // ÉèÖÃtoolTip
+        // è®¾ç½®toolTip
         double percent = (double)tmp.width() / 200.0;
         QString percentStr = QString::number(percent*100) + "%";
         QToolTip::showText(QCursor::pos(), percentStr, this, QRect(), 500);
@@ -294,10 +294,10 @@ void Clock::createMenu()
 
     m_pCloseAct = new QAction(this);
     m_pCloseAct->setIcon( QIcon(":/ico/closeBt.ico") );
-    m_pCloseAct->setText( QString::fromLocal8Bit("¹Ø±Õ") );
+    m_pCloseAct->setText( QString::fromLocal8Bit("å…³é—­") );
 
     m_pMaxiMinimizeAct = new QAction(this);
-    m_pMaxiMinimizeAct->setText( QString::fromLocal8Bit("È«ÆÁ") );
+    m_pMaxiMinimizeAct->setText( QString::fromLocal8Bit("å…¨å±") );
     m_pMaxiMinimizeAct->setIcon( QIcon(":/ico/fullscreen.ico") );
 
     m_pRBMenu->addAction(m_pCloseAct);
@@ -309,15 +309,15 @@ void Clock::createMenu()
     connect( m_pMaxiMinimizeAct, SIGNAL(triggered(bool)),
              this, SLOT( slot_showMaxiNormal() ) );
 
-    /* ¶ş¼¶²Ëµ¥ */
+    /* äºŒçº§èœå• */
     m_pRBMenu->addSeparator();
-    m_pSDMenu = m_pRBMenu->addMenu( QIcon(":/ico/sound.ico"), QString::fromLocal8Bit("ÒôĞ§¿ØÖÆ") );
+    m_pSDMenu = m_pRBMenu->addMenu( QIcon(":/ico/sound.ico"), QString::fromLocal8Bit("éŸ³æ•ˆæ§åˆ¶") );
 
     m_pSoundOnAct = new QAction(this);
-    m_pSoundOnAct->setText( QString::fromLocal8Bit("ÒôĞ§¿ª") );
+    m_pSoundOnAct->setText( QString::fromLocal8Bit("éŸ³æ•ˆå¼€") );
     m_pSoundOnAct->setIcon( QIcon(":/ico/nocheck.ico") );
     m_pSoundOffAct = new QAction(this);
-    m_pSoundOffAct->setText( QString::fromLocal8Bit("ÒôĞ§¹Ø") );
+    m_pSoundOffAct->setText( QString::fromLocal8Bit("éŸ³æ•ˆå…³") );
     m_pSoundOffAct->setIcon( QIcon(":/ico/check.ico") );
 
     m_pSDMenu->addAction(m_pSoundOnAct);
@@ -328,24 +328,24 @@ void Clock::createMenu()
     connect( m_pSoundOffAct, SIGNAL(triggered(bool)),
              this, SLOT( slot_EffectControl() ) );
 }
-/* ´´½¨ÏµÍ³ÍĞÅÌ */
+/* åˆ›å»ºç³»ç»Ÿæ‰˜ç›˜ */
 void Clock::createTray()
 {
-    /* ÍĞÅÌÍ¼±ê */
+    /* æ‰˜ç›˜å›¾æ ‡ */
     systemTray = new QSystemTrayIcon(this);
-    systemTray->setToolTip( QString::fromLocal8Bit("×ÀÃæÊ±ÖÓ") );
+    systemTray->setToolTip( QString::fromLocal8Bit("æ¡Œé¢æ—¶é’Ÿ") );
     systemTray->setIcon(QIcon(":/ico/clock.ico"));
     systemTray->show();
 
-    /* ÍĞÅÌ²Ëµ¥ */
-    systemTray->setContextMenu(m_pRBMenu); // ÓëÓÒ¼ü²Ëµ¥ÀàËÆ£¬QMenuÀà
+    /* æ‰˜ç›˜èœå• */
+    systemTray->setContextMenu(m_pRBMenu); // ä¸å³é”®èœå•ç±»ä¼¼ï¼ŒQMenuç±»
 
-    /* ÍĞÅÌÏûÏ¢ */
-    //    systemTray->showMessage(tr("TiTle"), tr("msg"), QIcon("://msgIco.ico"), 1000); // ±êÌâ£¬ÏûÏ¢ÄÚÈİ£¬ÏûÏ¢Í¼±ê£¬³ÖĞøÊ±¼ä
+    /* æ‰˜ç›˜æ¶ˆæ¯ */
+    //    systemTray->showMessage(tr("TiTle"), tr("msg"), QIcon("://msgIco.ico"), 1000); // æ ‡é¢˜ï¼Œæ¶ˆæ¯å†…å®¹ï¼Œæ¶ˆæ¯å›¾æ ‡ï¼ŒæŒç»­æ—¶é—´
 }
-/* ÖØĞ´ÓÒ¼ü²Ëµ¥ÏìÓ¦ÊÂ¼ş */
+/* é‡å†™å³é”®èœå•å“åº”äº‹ä»¶ */
 void Clock::contextMenuEvent(QContextMenuEvent *event)
 {
-    m_pRBMenu->exec(QCursor::pos()); // ÔÚ¹â±ê´¦µ¯³öÓÒ¼ü²Ëµ¥
+    m_pRBMenu->exec(QCursor::pos()); // åœ¨å…‰æ ‡å¤„å¼¹å‡ºå³é”®èœå•
     event->accept();
 }

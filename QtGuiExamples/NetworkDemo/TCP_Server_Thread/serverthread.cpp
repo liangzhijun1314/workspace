@@ -1,4 +1,4 @@
-#include "serverthread.h"
+﻿#include "serverthread.h"
 #include <QFile>
 #define COMMAND_SIZE 50
 ServerThread::ServerThread(int socketDescriptor,QObject *parent,MainWindow *m,int c):QThread(parent)

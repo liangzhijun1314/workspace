@@ -1,4 +1,4 @@
-#include "server.h"
+﻿#include "server.h"
 #include "serverthread.h"
 
 Server::Server(MainWindow *m,int p,QHostAddress a)

@@ -1,7 +1,7 @@
-/*******************************************************************************
+ï»¿/*******************************************************************************
 ** @file:     clock.h
 ** @class:    Clock
-** @brief:    //Ä£ÄâÊ±ÖÓ
+** @brief:    //æ¨¡æ‹Ÿæ—¶é’Ÿ
 ** Detailed description
 **
 ** @author:   lzj
@@ -50,12 +50,12 @@ private:
 
     QPoint mPos;
 
-    // ÓÒ¼ü²Ëµ¥
+    // å³é”®èœå•
     QMenu *m_pRBMenu;
     QAction *m_pCloseAct;
     QAction *m_pMaxiMinimizeAct;
 
-    // ÒôĞ§¿ØÖÆ²Ëµ¥
+    // éŸ³æ•ˆæ§åˆ¶èœå•
     QMenu *m_pSDMenu;
     QAction *m_pSoundOffAct;
     QAction *m_pSoundOnAct;

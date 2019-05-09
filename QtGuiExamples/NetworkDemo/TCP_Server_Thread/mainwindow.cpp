@@ -1,4 +1,4 @@
-/*******************************************************************************
+ï»¿/*******************************************************************************
 ** @file:     mainwindow.cpp
 ** @class:    MainWindow
 ** @brief:    //Short description
@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->pushButton->setText(QString::fromLocal8Bit("¿ªÊ¼¼àÌý"));
+    ui->pushButton->setText(QString::fromLocal8Bit("å¼€å§‹ç›‘å¬"));
 }
 
 MainWindow::~MainWindow()
@@ -44,7 +44,8 @@ void MainWindow::execCommand(const char *command, int length, const char *add, i
     char *commandStr=new char[length+15];
     strcpy(commandStr,command);
     char *para=commandStr+length;
-    char *c=" > temp.txt";
+    char ss[] = " > temp.txt";
+    char *c = ss;
     strcpy(para,c);
     system(commandStr);
     emit writeFile(clientCode);
