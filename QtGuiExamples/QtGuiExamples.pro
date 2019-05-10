@@ -20,4 +20,5 @@ SUBDIRS	+= Keyboard
 SUBDIRS	+= Keyboard2
 SUBDIRS	+= qExcel
 SUBDIRS	+= DragAndDrop
+SUBDIRS	+= LayoutDemo
 
