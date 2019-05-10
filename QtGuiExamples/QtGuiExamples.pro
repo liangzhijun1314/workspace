@@ -27,4 +27,5 @@ SUBDIRS += QCustomplotDemo
 SUBDIRS += CheckCombox
 SUBDIRS += MultiScreen
 SUBDIRS += showapi
+SUBDIRS += Thread_example
 
