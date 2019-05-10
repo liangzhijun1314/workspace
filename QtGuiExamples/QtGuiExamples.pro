@@ -26,4 +26,5 @@ SUBDIRS += plotdemo
 SUBDIRS += QCustomplotDemo
 SUBDIRS += CheckCombox
 SUBDIRS += MultiScreen
+SUBDIRS += showapi
 
