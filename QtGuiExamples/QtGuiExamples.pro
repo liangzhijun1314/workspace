@@ -23,4 +23,5 @@ SUBDIRS	+= DragAndDrop
 SUBDIRS	+= LayoutDemo
 SUBDIRS += Calendar
 SUBDIRS += plotdemo
+SUBDIRS += CheckCombox
 
