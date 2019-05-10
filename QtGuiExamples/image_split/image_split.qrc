@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>level/grade.jpg</file>
+        <file>level/level.png</file>
+        <file>level/lv.jpg</file>
+        <file>level/level_value.jpg</file>
+    </qresource>
+</RCC>
