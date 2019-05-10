@@ -24,4 +24,5 @@ SUBDIRS	+= LayoutDemo
 SUBDIRS += Calendar
 SUBDIRS += plotdemo
 SUBDIRS += CheckCombox
+SUBDIRS += MultiScreen
 
