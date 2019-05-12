@@ -31,4 +31,5 @@ SUBDIRS += Thread_example
 SUBDIRS += QUI
 SUBDIRS += TreeDemo
 SUBDIRS += tray
+SUBDIRS += file
 
