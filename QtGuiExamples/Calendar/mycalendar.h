@@ -1,7 +1,7 @@
 ﻿#ifndef MYCALENDAR_H
 #define MYCALENDAR_H
 
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 #include "ui_mycalendar.h"
 #include "DefDateTimeEdit.h"
 

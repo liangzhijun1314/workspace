@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>green.jpg</file>
+        <file>indigo.jpg</file>
+        <file>test.png</file>
+        <file>rabit.png</file>
+        <file>a/1.png</file>
+        <file>a/2.png</file>
+        <file>a/3.png</file>
+        <file>a/4.png</file>
+        <file>a/tiao.png</file>
+        <file>a/addpage.png</file>
+        <file>a/subpage.png</file>
+    </qresource>
+</RCC>

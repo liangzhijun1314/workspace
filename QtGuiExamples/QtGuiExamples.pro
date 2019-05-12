@@ -29,4 +29,5 @@ SUBDIRS += MultiScreen
 SUBDIRS += showapi
 SUBDIRS += Thread_example
 SUBDIRS += QUI
+SUBDIRS += TreeDemo
 
