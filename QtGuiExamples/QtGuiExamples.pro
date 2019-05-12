@@ -30,4 +30,5 @@ SUBDIRS += showapi
 SUBDIRS += Thread_example
 SUBDIRS += QUI
 SUBDIRS += TreeDemo
+SUBDIRS += tray
 
