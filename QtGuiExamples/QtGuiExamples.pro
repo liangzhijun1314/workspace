@@ -32,4 +32,5 @@ SUBDIRS += QUI
 SUBDIRS += TreeDemo
 SUBDIRS += tray
 SUBDIRS += file
+SUBDIRS += GetColorValueTools
 
