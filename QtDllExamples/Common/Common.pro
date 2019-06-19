@@ -29,16 +29,10 @@ CONFIG(debug,debug|release){
     unix:TARGET = $$join(TARGET,,,_debug)
     else:TARGET = $$join(TARGET,,,d)
 }
-SOURCES += \
-        common.cpp \
-    comfile.cpp
-
-HEADERS += \
-        common.h \
-        common_global.h \ 
-    comfile.h
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+include (./Common.pri)
